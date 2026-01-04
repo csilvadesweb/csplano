@@ -1,300 +1,53 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planner Diário - PWA</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jejum 18h • 30 Dias</title>
 
-    <meta name="theme-color" content="#1e3a8a">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#1e3a8a">
-    <link rel="manifest" href="data:application/json;base64,eyJpY29ucyI6W3sic2l6ZXMiOiI2NHg2NCIsImNyZXRlZCI6IjIwMjEtMTAtMjZUMjA6NTI6NDcuMTY3WjAiLCJuYW1lIjoicGxhbm5lciIsInNyYyI6Ii9hcGlzL3BsYW5uZXIuaWNvbi5wbmciLCJkb20iOiIiLCJkaXNwIjp0cnVlLCJzdXByZW1lZHZpc2VkIjp0cnVlfV0sIm5hbWUiOiJQbGFubmVyIiwic2hvcnRfbmFtZSI6IlBsYW5uZXIgRGkg4dEiYWdvIiwic3RhcnRfdXJsIjoiL2FwaXMvcmVkaXJlY3QvYmFzZS8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMTUzYzhhIn0=">
-
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f4f8;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: #ffffff;
-            padding: 30px 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        h1, h2 {
-            text-align: center;
-            color: #1e3a8a;
-            margin-bottom: 5px;
-        }
-        h1 {
-            border-bottom: 3px solid #3b82f6;
-            padding-bottom: 10px;
-            font-size: 2.2em;
-        }
-        h2 {
-            font-size: 1.2em;
-            color: #60a5fa;
-            font-weight: normal;
-        }
-        .note {
-            text-align: center;
-            color: #6b7280;
-            font-style: italic;
-            margin-bottom: 30px;
-        }
-        .day {
-            background-color: #f9fafb;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 25px;
-            border-left: 6px solid #3b82f6;
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        }
-        .day:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-        }
-        h3 {
-            margin-top: 0;
-            color: #1e40af;
-            font-size: 1.5em;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            padding: 8px 0;
-            border-bottom: 1px dashed #e5e7eb;
-            display: flex;
-            align-items: center;
-        }
-        li:last-child {
-            border-bottom: none;
-        }
-        .checkbox {
-            margin-right: 12px;
-            cursor: pointer;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #9ca3af;
-            border-radius: 4px;
-            position: relative;
-            outline: none;
-            transition: background-color 0.2s, border-color 0.2s;
-        }
-        .checkbox:checked {
-            background-color: #16a34a;
-            border-color: #16a34a;
-        }
-        .checkbox:checked::after {
-            content: '✅';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #fff;
-            font-size: 12px;
-        }
-        strong {
-            color: #0b1c55;
-        }
-        .meal-list {
-            margin-left: 30px;
-        }
-        
-        /* OTIMIZAÇÃO PARA TELAS MENORES */
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
-            .container {
-                margin: 20px auto;
-                padding: 20px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-            h2 {
-                font-size: 1em;
-            }
-            .day {
-                padding: 15px;
-            }
-            h3 {
-                font-size: 1.3em;
-            }
-            .meal-list {
-                margin-left: 15px;
-            }
-        }
-    </style>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#16a34a">
 </head>
 <body>
 
-    <div class="container">
-        <h1>Planner Semanal</h1>
-        <h2>Dieta 1500 kcal | Jejum Intermitente | Treino Noturno</h2>
-        <p class="note">✅ - Marque quando a tarefa for concluída e sinta a satisfação do progresso!</p>
+<div class="container">
+  <h1>🔥 Jejum 18h</h1>
+  <p class="subtitle">Checklist diário • 30 dias</p>
 
-        <div class="day" data-day="segunda">
-            <h3>Segunda-feira</h3>
-            <ul>
-                <li data-task="almoco">
-                    <input type="checkbox" class="checkbox"> 
-                    <div>
-                        <strong>12h – Almoço (1100 kcal):</strong>
-                        <ul class="meal-list">
-                            <li>4 col. de sopa de arroz (160g)</li>
-                            <li>4 col. de sopa de feijão (200g)</li>
-                            <li>1 sobrecoxa grande assada/grelhada (200g)</li>
-                            <li>2 ovos cozidos</li>
-                            <li>1 banana grande (150g)</li>
-                            <li>1 col. de sopa de chia</li>
-                        </ul>
-                    </div>
-                </li>
-                <li data-task="lanche">
-                    <input type="checkbox" class="checkbox"> 
-                    <div>
-                        <strong>17h – Lanche (400 kcal):</strong>
-                        <ul class="meal-list">
-                            <li>1 tapioca com 1 ovo mexido e 1 fatia de queijo (30g)</li>
-                            <li>1 mexerica</li>
-                        </ul>
-                    </div>
-                </li>
-                <li data-task="treino">
-                    <input type="checkbox" class="checkbox"> <strong>Treino 22h – Cardio ou musculação 40 min</strong>
-                </li>
-            </ul>
-        </div>
+  <div class="progress">
+    <div id="progress-bar"></div>
+  </div>
+  <p id="progress-text">0% concluído</p>
 
-        <div class="day" data-day="terca">
-            <h3>Terça-feira</h3>
-            <ul>
-                <li data-task="almoco">
-                    <input type="checkbox" class="checkbox"> 
-                    <div>
-                        <strong>12h – Almoço (1100 kcal):</strong>
-                        <ul class="meal-list">
-                            <li>200g de macarrão cozido</li>
-                            <li>150g de carne moída refogada</li>
-                            <li>2 ovos cozidos</li>
-                            <li>1 banana grande (150g)</li>
-                        </ul>
-                    </div>
-                </li>
-                <li data-task="lanche">
-                    <input type="checkbox" class="checkbox"> 
-                    <div>
-                        <strong>17h – Lanche (400 kcal):</strong>
-                        <ul class="meal-list">
-                            <li>1 tapioca com 1 ovo mexido</li>
-                            <li>1 lata de sardinha em óleo (escorra o óleo)</li>
-                        </ul>
-                    </div>
-                </li>
-                <li data-task="treino">
-                    <input type="checkbox" class="checkbox"> <strong>Treino 22h – Cardio ou musculação 40 min</strong>
-                </li>
-            </ul>
-        </div>
+  <ul id="checklist">
+    <li><label><input type="checkbox"> Última refeição até 17h30</label></li>
+    <li><label><input type="checkbox"> Primeira refeição às 11h30</label></li>
+    <li><label><input type="checkbox"> Nada fora da janela</label></li>
 
-        <div class="day" data-day="quarta">
-            <h3>Quarta-feira</h3>
-            <ul>
-                <li data-task="almoco">
-                    <input type="checkbox" class="checkbox"> 
-                    <div>
-                        <strong>12h – Almoço (1100 kcal):</strong>
-                        <ul class="meal-list">
-                            <li>5 col. de sopa de arroz (200g)</li>
-                            <li>4 col. de sopa de feijão (200g)</li>
-                            <li>1 bisteca de porco grelhada (200g)</li>
-                            <li>2 ovos cozidos</li>
-                            <li>1 banana grande (150g)</li>
-                            <li>1 col. de sopa de chia</li>
-                        </ul>
-                    </div>
-                </li>
-                <li data-task="lanche">
-                    <input type="checkbox" class="checkbox"> 
-                    <div>
-                        <strong>17h – Lanche (400 kcal):</strong>
-                        <ul class="meal-list">
-                            <li>1 tapioca com 1 ovo mexido e 1 fatia de queijo (30g)</li>
-                            <li>1 mexerica</li>
-                        </ul>
-                    </div>
-                </li>
-                <li data-task="treino">
-                    <input type="checkbox" class="checkbox"> <strong>Treino 22h – Cardio ou musculação 40 min</strong>
-                </li>
-            </ul>
-        </div>
+    <li class="section">💧 Jejum</li>
+    <li><label><input type="checkbox"> Água (2–3 L)</label></li>
+    <li><label><input type="checkbox"> Café ou chá sem açúcar</label></li>
 
-        <div class="day" data-day="resto">
-            <h3>Resto da Semana</h3>
-            <ul>
-                <li data-task="quinta">
-                    <input type="checkbox" class="checkbox"> <strong>Quinta-feira:</strong> Repetir Cardápio A
-                </li>
-                <li data-task="sexta">
-                    <input type="checkbox" class="checkbox"> <strong>Sexta-feira:</strong> Repetir Cardápio B
-                </li>
-                <li data-task="sabado">
-                    <input type="checkbox" class="checkbox"> <strong>Sábado:</strong> Repetir Cardápio C
-                </li>
-                <li data-task="domingo">
-                    <input type="checkbox" class="checkbox"> <strong>Domingo:</strong> Dia de descanso. Ou repita um cardápio de sua preferência.
-                </li>
-            </ul>
-        </div>
-    </div>
+    <li class="section">🍽️ Refeição 11h30</li>
+    <li><label><input type="checkbox"> Arroz + feijão</label></li>
+    <li><label><input type="checkbox"> Proteína + ovos</label></li>
+    <li><label><input type="checkbox"> 1 fruta</label></li>
 
-    <script>
-        // Registra o Service Worker
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('data:application/javascript;base64,IyBWZXJzaW9uIDAuMDEgICAgCnZhciBjYWNoZU5hbWUgPSAncGxhbm5lci12MC4wMSc7CnZhciBmaWxlc1RvQ2FjaGUgPSBbCiAgICAnLicsCiAgICAnL2luZGV4Lmh0bWwnCl07CnNlbGYuYWRkRXZlbnRMaXN0ZW5lciwnZmV0Y2gnLCAoZXZlbnQpPT57CgogICAgZXZlbnQucmVzcG9uZFdpdGgoCiAgICAgICAgY2FjaGVzLm1hdGNoKGV2ZW50LnJlcXVlc3QpLnRoZW4oKHJlc3BvbnNlKTw9PntuZXcgUmVzcG9uc2UoJ3Jlc3BvbnNlIik7fSkpOwoKfSk7')
-                .then(registration => {
-                    console.log('Service Worker registrado com sucesso:', registration);
-                })
-                .catch(error => {
-                    console.error('Falha no registro do Service Worker:', error);
-                });
-        }
+    <li class="section">🍳 Última refeição</li>
+    <li><label><input type="checkbox"> Proteína + ovos</label></li>
+    <li><label><input type="checkbox"> Sem carbo à noite</label></li>
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const checkboxes = document.querySelectorAll('.checkbox');
-            const savedState = JSON.parse(localStorage.getItem('plannerProgress')) || {};
-            
-            checkboxes.forEach(checkbox => {
-                const day = checkbox.closest('.day').dataset.day;
-                const task = checkbox.closest('li').dataset.task;
-                const key = `${day}-${task}`;
+    <li class="section">🚶 Movimento</li>
+    <li><label><input type="checkbox"> Caminhada 20–30 min</label></li>
 
-                if (savedState[key]) {
-                    checkbox.checked = true;
-                }
+    <li class="section">🛌 Sono</li>
+    <li><label><input type="checkbox"> Dormi 7h+</label></li>
+  </ul>
 
-                checkbox.addEventListener('change', () => {
-                    if (checkbox.checked) {
-                        savedState[key] = true;
-                    } else {
-                        delete savedState[key];
-                    }
-                    localStorage.setItem('plannerProgress', JSON.stringify(savedState));
-                });
-            });
-        });
-    </script>
+  <button id="reset">🔄 Resetar Dia</button>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
