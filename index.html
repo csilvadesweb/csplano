@@ -3,51 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jejum 18h • 30 Dias</title>
+  <title>Jejum 18h • Controle Completo</title>
+
+  <link rel="manifest" href="/csplano/manifest.json">
+  <meta name="theme-color" content="#16a34a">
 
   <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#16a34a">
 </head>
 <body>
 
-<div class="container">
-  <h1>🔥 Jejum 18h</h1>
-  <p class="subtitle">Checklist diário • 30 dias</p>
+<header>
+  <h1>Jejum 18h • 30 Dias</h1>
+  <p>1ª refeição 11h30 • Última refeição 17h30</p>
+</header>
 
-  <div class="progress">
-    <div id="progress-bar"></div>
-  </div>
-  <p id="progress-text">0% concluído</p>
+<section class="info">
+  <div>👤 43 anos</div>
+  <div>📏 1,72 m</div>
+  <div>⚖️ 97 kg</div>
+</section>
 
-  <ul id="checklist">
-    <li><label><input type="checkbox"> Última refeição até 17h30</label></li>
-    <li><label><input type="checkbox"> Primeira refeição às 11h30</label></li>
-    <li><label><input type="checkbox"> Nada fora da janela</label></li>
-
-    <li class="section">💧 Jejum</li>
-    <li><label><input type="checkbox"> Água (2–3 L)</label></li>
-    <li><label><input type="checkbox"> Café ou chá sem açúcar</label></li>
-
-    <li class="section">🍽️ Refeição 11h30</li>
-    <li><label><input type="checkbox"> Arroz + feijão</label></li>
-    <li><label><input type="checkbox"> Proteína + ovos</label></li>
-    <li><label><input type="checkbox"> 1 fruta</label></li>
-
-    <li class="section">🍳 Última refeição</li>
-    <li><label><input type="checkbox"> Proteína + ovos</label></li>
-    <li><label><input type="checkbox"> Sem carbo à noite</label></li>
-
-    <li class="section">🚶 Movimento</li>
-    <li><label><input type="checkbox"> Caminhada 20–30 min</label></li>
-
-    <li class="section">🛌 Sono</li>
-    <li><label><input type="checkbox"> Dormi 7h+</label></li>
+<section class="estagios">
+  <h2>⏳ Estágios do Jejum</h2>
+  <ul>
+    <li>0–4h: Digestão</li>
+    <li>4–12h: Glicogênio</li>
+    <li>12–16h: Queima de gordura</li>
+    <li>16–18h: Autófagia</li>
   </ul>
+</section>
 
-  <button id="reset">🔄 Resetar Dia</button>
-</div>
+<section class="calculadora">
+  <h2>🍽️ Cardápio Diário</h2>
+
+  <div class="linha">
+    <select id="food"></select>
+    <input type="number" id="qty" value="1" min="1">
+    <button onclick="addFood()">Adicionar</button>
+  </div>
+
+  <ul id="lista"></ul>
+
+  <div class="resumo">
+    <p>🔥 Calorias do dia: <strong><span id="total">0</span> kcal</strong></p>
+    <p>📉 Déficit diário: <strong><span id="deficit">0</span> kcal</strong></p>
+    <p>⚖️ Previsão 30 dias: <strong><span id="peso">0</span> kg</strong></p>
+  </div>
+
+  <button class="salvar" onclick="saveDay()">Salvar Dia</button>
+</section>
+
+<section class="historico">
+  <h2>📆 Histórico</h2>
+  <ul id="history"></ul>
+</section>
+
+<footer>
+  <p>Plano simples • Econômico • Offline</p>
+</footer>
 
 <script src="script.js"></script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/csplano/service-worker.js");
+}
+</script>
+
 </body>
 </html>
