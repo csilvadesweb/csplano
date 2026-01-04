@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>CS Plano • Jejum & Calorias</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="loginBox" class="card">
+  <h2>Login</h2>
+  <input id="email" placeholder="Email">
+  <input id="senha" type="password" placeholder="Senha">
+  <button onclick="login()">Entrar / Criar Conta</button>
+</div>
+
+<div id="app" class="hidden">
+
+  <header>
+    <h1>CS Plano</h1>
+    <button onclick="logout()">Sair</button>
+  </header>
+
+  <section class="card">
+    <h2>⏱️ Jejum</h2>
+    <p id="jejumStatus"></p>
+  </section>
+
+  <section class="card">
+    <h2>⚙️ Configurações</h2>
+    <input id="idade" type="number" placeholder="Idade">
+    <input id="altura" type="number" placeholder="Altura (cm)">
+    <input id="peso" type="number" placeholder="Peso atual (kg)">
+    <button onclick="salvarConfig()">Salvar</button>
+  </section>
+
+  <section class="card">
+    <h2>🍽️ Cardápio</h2>
+    <div id="alimentos"></div>
+    <p>Total: <strong><span id="totalCal">0</span> kcal</strong></p>
+  </section>
+
+  <section class="card">
+    <h2>📊 Peso</h2>
+    <input id="pesoDia" type="number" placeholder="Peso hoje">
+    <button onclick="registrarPeso()">Registrar</button>
+    <canvas id="grafico" height="200"></canvas>
+  </section>
+
+</div>
+
+<script src="script.js"></script>
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js");
+}
+</script>
+</body>
+</html>
